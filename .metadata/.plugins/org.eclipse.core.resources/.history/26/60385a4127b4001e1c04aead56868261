@@ -1,0 +1,57 @@
+package Bai14;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int chon;
+
+		do {
+			System.out.println("MENU");
+			System.out.println("1. Nhap du lieu vao DB.");
+
+			chon = Integer.parseInt(sc.nextLine());
+			switch (chon) {
+			case 1:
+				insert();
+				break;
+			case 2:
+				dislay();
+				break;
+			}
+		} while (chon != 0);
+	}
+
+	private static void insert() {
+		ArrayList<Employee> list = new ArrayList<>();
+		System.out.print("Nhap so luong employee muon insert");
+		int n = Integer.parseInt(sc.nextLine());
+		for (int i = 0; i < n; i++) {
+			System.out.println("ID: ");
+			long id = Long.parseLong(sc.nextLine());
+			
+			System.out.println("Name: ");
+			String name = sc.nextLine();
+			
+			System.out.println("Age: ");
+			int age = Integer.parseInt(sc.nextLine());
+			
+			System.out.println("Address: ");
+			String address = sc.nextLine();
+			
+			System.out.println("Salary: ");
+			double salary = Double.parseDouble(sc.nextLine());
+			
+			System.out.println("sumTimeWork: ");
+			int sumTime = Integer.parseInt(sc.nextLine());
+			
+			Employee e = new Employee(id, name, age, address, salary, sumTime);
+			list.add(e);
+			EmployeeDAO.insert(e);
+		}
+	}
+	
+}

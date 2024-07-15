@@ -1,0 +1,37 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>themmaymoi</servlet-name>
+  	<display-name>themmaymoi</display-name>
+  	<description></description>
+  	<servlet-class>fa.training.Sevlet.themmaymoi</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>themkhachhang</servlet-name>
+  	<display-name>themkhachhang</display-name>
+  	<description></description>
+  	<servlet-class>fa.training.Sevlet.themkhachhang</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>themdichvu</servlet-name>
+  	<display-name>themdichvu</display-name>
+  	<description></description>
+  	<servlet-class>fa.training.Sevlet.themdichvu</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>themmaymoi</servlet-name>
+  	<url-pattern>/themmaymoi</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>themkhachhang</servlet-name>
+  	<url-pattern>/themkhachhang</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>themdichvu</servlet-name>
+  	<url-pattern>/themdichvu</url-pattern>
+  </servlet-mapping>
+</web-app>

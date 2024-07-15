@@ -1,0 +1,8 @@
+package Bai14;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class InsertEmpolyeeModel {
+	public static void 
+}

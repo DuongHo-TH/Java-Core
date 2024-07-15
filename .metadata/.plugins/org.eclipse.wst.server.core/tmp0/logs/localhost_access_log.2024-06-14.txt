@@ -1,0 +1,15 @@
+127.0.0.1 - - [14/Jun/2024:00:26:03 +0700] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:26:04 +0700] "GET /General_Assiment_ATJB_opt2/ HTTP/1.1" 200 1218
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:26:04 +0700] "GET /General_Assiment_ATJB_opt2/static/jquey.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:26:04 +0700] "GET /favicon.ico HTTP/1.1" 404 685
+127.0.0.1 - - [14/Jun/2024:00:44:24 +0700] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:44:25 +0700] "GET /General_Assiment_ATJB_opt2/ HTTP/1.1" 200 1218
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:44:31 +0700] "GET /General_Assiment_ATJB_opt2/showalldanhsach HTTP/1.1" 200 10352
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:44:31 +0700] "GET /General_Assiment_ATJB_opt2/static/qlphongmay.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:44:39 +0700] "GET /General_Assiment_ATJB_opt2/seachkhach?seach=duong HTTP/1.1" 200 9451
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:44:49 +0700] "GET /General_Assiment_ATJB_opt2/deletemaytram?mayid=22 HTTP/1.1" 200 1218
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:00:44:51 +0700] "GET /General_Assiment_ATJB_opt2/mServices?page=1 HTTP/1.1" 200 10352
+127.0.0.1 - - [14/Jun/2024:12:58:21 +0700] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:12:58:21 +0700] "GET /General_Assiment_ATJB_opt2/ HTTP/1.1" 200 1218
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:12:58:21 +0700] "GET /General_Assiment_ATJB_opt2/static/jquey.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2024:12:58:21 +0700] "GET /favicon.ico HTTP/1.1" 404 685

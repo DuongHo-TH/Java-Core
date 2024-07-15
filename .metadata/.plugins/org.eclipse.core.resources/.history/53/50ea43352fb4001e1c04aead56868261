@@ -1,0 +1,13 @@
+package Bai14;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public  class InsertEmpolyeeModel {
+	PreparedStatement stmt = null;
+	String SQL = "Insert into Employee Values(?,?,?,?,?,?)";
+	stmt = conn.createStatement();
+	int no_of_row = stmt.executeUpdate(SQL);
+	
+	 
+}

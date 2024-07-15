@@ -1,0 +1,101 @@
+package Bai14;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class EmployeeDAO {
+	public static int insert(Employee e) {
+		Connection conn = ConnectEmployee.connectDB();
+		int dem = 0;
+		String sql = "INSERT INTO employee Values(?,?,?,?,?,?)";
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, e.getID());
+			ps.setString(2, e.getName());
+			ps.setInt(3, e.getAge());
+			ps.setString(4, e.getAddress());
+			ps.setDouble(5, e.getSlary());
+			ps.setInt(6, e.getSumtimeWork());
+
+			ps.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (Exception e2) {
+			// TODO: handle exception
+		}
+		return dem;
+
+	}
+
+	public static ArrayList<Employee> display() {
+		Connection conn = ConnectEmployee.connectDB();
+		ArrayList<Employee> list = new ArrayList<>();
+		String dislay = "SELECT * FROM Employee";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(dislay);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				long id = rs.getLong("id");
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				String address = rs.getString("address");
+				double salary = rs.getDouble("salary");
+				int sumTime = rs.getInt("SumtimeWorld");
+				Employee e = new Employee(id, name, age, address, salary, sumTime);
+
+				list.add(e);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+
+	public static ArrayList<Employee> findForName(Employee tim) {
+		ArrayList<Employee> list = new ArrayList<>();
+		Connection conn = ConnectEmployee.connectDB();
+
+		try {
+			String find = "SELECT * From Employee Where Name like ?";
+			PreparedStatement stm = conn.prepareStatement(find);
+			stm.setNString(1, tim.getName());
+			ResultSet rs = stm.executeQuery();
+
+			while (rs.next()) {
+				Employee e = new Employee();
+				long id = rs.getLong("ID");
+				e.setID(id);
+				String name = rs.getString("Name");
+				e.setName(name);
+				int age = rs.getInt("age");
+				e.setAge(age);
+				String adress = rs.getString("address");
+				e.setAddress(adress);
+				double salary = rs.getDouble("salary");
+				e.setSlary(salary);
+				int sumtime = rs.getInt("SunTimeWorld");
+				e.setSumtimeWork(sumtime);
+				System.out.println(sumtime);
+				
+				list.add(e);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

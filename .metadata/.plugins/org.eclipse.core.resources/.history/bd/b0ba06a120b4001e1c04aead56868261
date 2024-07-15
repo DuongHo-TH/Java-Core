@@ -1,0 +1,38 @@
+package Bai14;
+
+import java.util.Scanner;
+
+//import java.util.Scanner;
+
+public class Employee{
+	int ID;
+	String Name;
+	int Age;
+	String Address;
+	double Slary;
+	int SumtimeWork;
+	
+
+	public void sale() {
+
+	}
+
+	public void intputInfo() {
+		Scanner sc = new Scanner(System.in);
+		System.err.println("Nhap ID: ");
+    	ID = sc.nextInt();
+		System.err.println("Nhap Ten : ");
+		Name = sc.nextLine();
+		System.err.println("Nhap Dia Chi: ");
+		Address = sc.nextLine();
+		System.err.println("Nhap Tuoi: ");
+		Age = sc.nextInt();
+		System.err.println("Nhap Tien Luong: ");
+		Slary = sc.nextDouble();
+		System.err.println("Nhap Ten Thoi Gian Lam Viec: ");
+		SumtimeWork = sc.nextInt();
+    	
+	
+	}
+	
+}

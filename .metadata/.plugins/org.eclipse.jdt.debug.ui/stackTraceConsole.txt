@@ -1,0 +1,2 @@
+ int id = 1;
+        candiiplm.getCandidateByID(id);

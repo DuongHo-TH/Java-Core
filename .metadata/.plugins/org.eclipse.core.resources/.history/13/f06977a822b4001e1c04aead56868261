@@ -1,0 +1,85 @@
+package Bai14;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+
+public class Main {
+	public static void main(String[]agrs) {
+		String url = "jdbc:sqlserver://localhost:1433;databaseName=Employee;encrypt=false;trustServerCertificate=false";
+		   String usern = "sa";
+		   String psswrd = "123456789";
+		   
+		   Connection connection = null;
+	       PreparedStatement preparedStatement = null;
+	       ResultSet resultSet = null;
+
+			Employee NhanVien1 = new Employee();
+			NhanVien1.intputInfo();
+//			NhanVien1.printlnfo();
+
+	        try {
+
+	            // Establish a connection
+	            connection = DriverManager.getConnection(url , usern , psswrd);
+
+//	            SQL query to insert data
+//	            String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?)";
+	            String sql = "Select * from Employee";
+
+	            PreparedStatement stm = connection.prepareStatement(sql);
+	            resultSet  = stm.executeQuery();
+	            System.out.println(resultSet);
+//	            Employee NhanVien2 = new Employee();
+//	            NhanVien2.setId(resultSet.getInt("id"));
+//	            NhanVien2.setName(resultSet.getString("name"));
+//	            NhanVien2.setAge(resultSet.getInt("age"));
+
+	            // Create a PreparedStatement
+//	            preparedStatement = connection.prepareStatement(sql);
+
+//	            String Name;
+//	        	int Age;
+//	        	String Address;
+//	        	double Slary;
+//	        	int SumtimeWork;
+//	        	int Sale_count;
+	            
+//	            System.out.println(NhanVien1);
+	            // Set values for the placeholders (?)
+//	            preparedStatement.setInt(1, NhanVien1.ID);
+//	            preparedStatement.setString(2, NhanVien1.Name);
+//	            preparedStatement.setInt(3, NhanVien1.Age);
+//	            preparedStatement.setString(4, NhanVien1.Address);
+//	            preparedStatement.setDouble(5, NhanVien1.Slary);
+//	            preparedStatement.setInt(6, NhanVien1.SumtimeWork);
+	            
+	            // Execute the query
+//	            int rowsAffected = preparedStatement.executeUpdate();
+//
+//	            System.out.println(rowsAffected + " row(s) affected.");
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

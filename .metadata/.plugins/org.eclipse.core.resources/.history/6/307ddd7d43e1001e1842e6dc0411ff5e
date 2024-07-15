@@ -1,0 +1,175 @@
+package Bai14;
+
+public class Nhap2 {
+	package ConnectDb;
+
+	import java.sql.Connection;
+	import java.sql.PreparedStatement;
+	import java.sql.SQLException;
+	import java.util.ArrayList;
+	import java.util.Scanner;
+
+	public class Main {
+
+		static Scanner sc = new Scanner(System.in);
+
+		public static void main(String[] agrs) {
+			int chon;
+			do {
+				System.out.println("==========MENU EMPLOYEE==========");
+				System.out.println("Má»i báº¡n chá»n báº±ng cÃ¡ch nháº¥n tá»« 1-5");
+				System.out.println("1. Nháº­p thÃ´ng tin Employee.");
+				System.out.println("2. Hiá»ƒn thá»‹ danh sÃ¡ch Employee.");
+				System.out.println("3. TÃ¬m kiáº¿m thÃ´ng tin Employee theo \"TÃŠN\".");
+				System.out.println("4. XÃ³a thÃ´ng tin Employee.");
+				System.out.println("5. Cáº­p nháº­p thÃ´n tin Employee.");
+				System.out.println("6. ThoÃ¡t");
+
+				System.out.print("Nháº­p lá»±a chá»n cá»§a báº¡n: ");
+				chon = Integer.parseInt(sc.nextLine());
+
+				switch (chon) {
+				case 1:
+					insert();
+					break;
+				case 2:
+					dislay();
+					break;
+				case 3:
+					findForName();
+					break;
+				case 4:
+					delete();
+					break;
+				case 5:
+					update();
+					break;
+				case 6:
+					System.out.println("BYE!");
+					break;
+				default:
+					System.out.println("Báº¡n Ä‘Ã£ chá»n sai, má»i báº¡n chá»n láº¡i.");
+				}
+				if (chon == 6) {
+					break;
+				}
+			} while (true);
+		}
+
+		private static void update() {
+			ArrayList<Employee> arr = new ArrayList<>();
+			Employee eployee = new Employee();
+			
+			System.out.println("Nháº­p vÃ o ID de UPDATE: ");
+			long id = Long.parseLong(sc.nextLine());
+			eployee.setId(id);
+			
+			System.out.print("Nháº­p Name: ");
+			String name = sc.nextLine();
+			eployee.setName(name);
+			System.out.print("Nháº­p Age: ");
+			int age = Integer.parseInt(sc.nextLine());
+			eployee.setAge(age);
+			System.out.print("Nháº­p Address: ");
+			String address = sc.nextLine();
+			eployee.setAddress(address);
+			System.out.print("Nháº­p Salary: ");
+			double salary = Double.parseDouble(sc.nextLine());
+			eployee.setSalary(salary);
+			System.out.print("Nháº­p Sum Time Work: ");
+			int sumTime = Integer.parseInt(sc.nextLine());
+			eployee.setSumTime(sumTime);
+			
+			arr.add(eployee);
+			
+			int result = EmployeeDAO.update(eployee);
+			if(result != 0) {
+				System.out.println("Update thanh cong");
+			}else {
+				System.out.println("That Bai");
+			}
+			
+		}
+
+		private static void delete() {
+			System.out.println("Nháº­p vÃ o ID de xoa: ");
+			long id = Long.parseLong(sc.nextLine());
+			
+			Employee em = new Employee(id);
+			EmployeeDAO.delete(em);
+			
+			System.out.println("Báº¡n Ä‘Ã£ xÃ³a record cÃ³ ID lÃ  " + id + " thÃ nh cÃ´ng!");
+		}
+
+		private static void findForName() {
+			ArrayList<Employee> arr = new ArrayList<>();
+			System.out.println("Nháº­p vÃ o Name de tim kiem: ");
+			String name = sc.nextLine();
+
+			Employee em = new Employee(name);
+			arr = EmployeeDAO.findForName(em);
+			if (arr.size() != 0) {
+				for (Employee pt : arr) {
+					System.out.println(pt.getId() + "\t" + pt.getName() + "\t" + pt.getAge() + "\t" + pt.getAddress()
+							+ "\t" + pt.getSalary() + "\t" + pt.getSumTime());
+				}
+				
+			}
+		}
+
+		private static void dislay() {
+			ArrayList<Employee> arr = new ArrayList<>();
+			arr.addAll(EmployeeDAO.dislay());
+			if (arr.size() != 0) {
+				for (Employee pt : arr) {
+					System.out.println(pt.getId() + "\t" + pt.getName() + "\t" + pt.getAge() + "\t" + pt.getAddress()
+							+ "\t" + pt.getSalary() + "\t" + pt.getSumTime());
+				}
+				
+			}
+		}
+
+		private static void insert() {
+			ArrayList<Employee> arr = new ArrayList<>();
+			System.out.print("Nháº­p sá»‘ lÆ°á»£ng Employee muá»‘n thÃªm: ");
+			int n = Integer.parseInt(sc.nextLine());
+			
+			int count = 0;
+			for (int i = 0; i < n; i++) {
+				System.out.print("Nháº­p ID: ");
+				long id = Long.parseLong(sc.nextLine());
+
+				System.out.print("Nháº­p Name: ");
+				String name = sc.nextLine();
+				while(name.isEmpty()) {
+					System.out.println("Báº¡n pháº£i nháº­p Name: ");
+					name = sc.nextLine();
+				}
+					
+				System.out.print("Nháº­p Age: ");
+				int age = Integer.parseInt(sc.nextLine());
+
+				System.out.print("Nháº­p Address: ");
+				String address = sc.nextLine();
+
+				System.out.print("Nháº­p Salary: ");
+				double salary = Double.parseDouble(sc.nextLine());
+
+				System.out.print("Nháº­p Sum Time Work: ");
+				int sumTime = Integer.parseInt(sc.nextLine());
+
+				Employee eployee = new Employee(id, name, age, address, salary, sumTime);
+
+				arr.add(eployee);
+				EmployeeDAO.insert(eployee);
+				count++;
+			}
+			if (count != 0) {
+				System.out.println("Nháº­p thÃ´ng tin cá»§a " + count + " employee thÃ nh cÃ´ng");
+			}else {
+				System.out.println("Tháº¥t báº¡i!");
+			}
+		}
+	}
+
+}

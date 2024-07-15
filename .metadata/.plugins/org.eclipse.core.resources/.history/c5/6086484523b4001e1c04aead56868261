@@ -1,0 +1,27 @@
+package Bai14;
+
+import java.util.Scanner;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+		int chon;
+		
+		do {
+			System.out.println("MENU");
+			System.out.println("1. Nhap du lieu vao DB.");
+			
+			chon = Integer.parseInt(sc.nextLine());
+			switch(1) {
+			case 1:
+				insert();
+				break;
+		}
+		}while(chon != 0);
+	}
+
+	private static void insert() {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,125 @@
+package qluvFPT;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class CandidateServices {
+	Scanner sc = new Scanner(System.in);
+	List<Candidate> listCandidate = new ArrayList<Candidate>();
+
+	public CandidateServices(List<Candidate> list) {
+		this.listCandidate = list;
+	}
+
+	
+	public void createExperience() throws SQLException {
+
+		Experience exc = new Experience();
+		do {
+			System.out.println("Nhập CandidateID của ứng viên : ");
+			exc.setCandidateID(sc.nextLine());
+			System.out.println("Nhập FullName của ứng viên : ");
+			exc.setFullname(sc.nextLine());
+
+			while (true) {
+				try {
+					System.out.println("Nhập Birthday Theo Mẫu yyy-MM-dd");
+					String inputDate = sc.nextLine();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					LocalDate localDate = LocalDate.parse(inputDate, formatter);
+					exc.setBirthday(localDate);
+					break;
+				} catch (Exception e) {
+					System.out.println("Định dạng không hợp lệ. Vui lòng nhập lại theo định dạng yyyy-MM-dd.");
+				}
+			}
+			System.out.println("Nhập SĐT liên lạc : ");
+			exc.setPhone(Integer.parseInt(sc.nextLine()));
+			System.out.println("Nhập Địa Chỉ Email : ");
+			exc.setEmail(sc.nextLine());
+			System.out.println("Nhập Phân Loại Ứng Viên với 0,'Experience' 1,'Fresher' 2,'Intern' :");
+			exc.setCandidate_type(Integer.parseInt(sc.nextLine()));
+			System.out.println("Nhập Số Năm Kinh Nghiệm Của Ứng Viên :");
+			exc.setExpInyear(Integer.parseInt(sc.nextLine()));
+			System.out.println("Nhập tên Kỹ Năng của ứng viên : ");
+			exc.setProSkill(sc.nextLine());
+			this.listCandidate.add(exc);
+
+			Connection conn = Conec_QLUV_FPT.connectDB();
+
+			String sql = "INSERT INTO Candidate(Candidate_ID,Fullname,Birthday,Phone,Email,Candidate_type,ExpInyear,ProSkill ) VALUES (?,?,?,?,?,?,?,?)";
+
+			try (PreparedStatement ps = conn.prepareStatement(sql)) {
+				ps.setString(1, exc.getCandidateID());
+				ps.setString(2, exc.getFullname());
+				ps.setObject(3, exc.getBirthday());
+				ps.setInt(4, exc.getPhone());
+				ps.setString(5, exc.getEmail());
+				ps.setInt(6, exc.getCandidate_type());
+				ps.setInt(7, exc.getExpInyear());
+				ps.setString(8, exc.getProSkill());
+				int rowsAffected = ps.executeUpdate();
+				if (rowsAffected > 0) {
+					System.out.println("Dữ liệu đã được chèn thành công!");
+				} else {
+					System.out.println("Không thể chèn dữ liệu.");
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			} finally {
+				if (conn != null) {
+					conn.close();
+				}
+			}
+			System.out.println("Bạn Có Muốn Nhập Thêm Ứng Viên Experience. Chọn Y/N");
+			String menu = sc.nextLine();
+			if (menu.equalsIgnoreCase("n")) {
+				break;
+			}
+		} while (true);
+	}
+	/*
+	 * private String CandidateID; private String Fullname; private LocalDate
+	 * Birthday; private int Phone; private String Email; private int
+	 * Candidate_type;
+	 */
+	public void createFresher() {
+           Fresher fres = new Fresher();
+           do {
+   			System.out.println("Nhập CandidateID của ứng viên : ");
+   			fres.setCandidateID(sc.nextLine());
+   			System.out.println("Nhập FullName của ứng viên : ");
+   			fres.setFullname(sc.nextLine());
+
+   			while (true) {
+   				try {
+   					System.out.println("Nhập Birthday Theo Mẫu yyy-MM-dd");
+   					String inputDate = sc.nextLine();
+   					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+   					LocalDate localDate = LocalDate.parse(inputDate, formatter);
+   					fres.setBirthday(localDate);
+   					break;
+   				} catch (Exception e) {
+   					System.out.println("Định dạng không hợp lệ. Vui lòng nhập lại theo định dạng yyyy-MM-dd.");
+   				}
+   			}
+   			System.out.println("Nhập SĐT liên lạc : ");
+   			fres.setPhone(Integer.parseInt(sc.nextLine()));
+   			System.out.println("Nhập Địa Chỉ Email : ");
+   			fres.setEmail(sc.nextLine());
+   			System.out.println("Nhập Phân Loại Ứng Viên với 0,'Experience' 1,'Fresher' 2,'Intern' :");
+   			fres.setCandidate_type(Integer.parseInt(sc.nextLine()));
+   			System.out.println("Nhập Số Năm Kinh Nghiệm Của Ứng Viên :");
+   			fres.setEducation(sc.nextLine());
+   			System.out.println("Nhập tên Kỹ Năng của ứng viên : ");
+   			exc.setProSkill(sc.nextLine());
+   			this.listCandidate.add(exc);
+           }
+	}
+}

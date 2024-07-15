@@ -1,0 +1,147 @@
+package Bai14;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class Nhap {
+	
+
+
+
+		public static int insert(Employee employee) {
+			int result = 0;
+			Connection conn = DBUntil.getConnection();
+
+			String insert = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?)";
+
+			try {
+				PreparedStatement pstm = conn.prepareStatement(insert);
+				pstm.setLong(1, employee.getId());
+				pstm.setString(2, employee.getName());
+				pstm.setInt(3, employee.getAge());
+				pstm.setString(4, employee.getAddress());
+				pstm.setDouble(5, employee.getSalary());
+				pstm.setInt(6, employee.getSumTime());
+
+				result = pstm.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+
+		public static ArrayList<Employee> dislay() {
+			Connection conn = DBUntil.getConnection();
+			ArrayList<Employee> list = new ArrayList<>();
+			String dislay = "SELECT * FROM Employee";
+
+			try {
+				PreparedStatement pstm = conn.prepareStatement(dislay);
+				ResultSet rs = pstm.executeQuery();
+				while (rs.next()) {
+					long id = rs.getLong("id");
+					String name = rs.getString("name");
+					int age = rs.getInt("age");
+					String address = rs.getString("address");
+					double salary = rs.getDouble("salary");
+					int sumTime = rs.getInt("SumTimeWork");
+					Employee e = new Employee(id, name, age, address, salary, sumTime);
+
+					list.add(e);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+		public static ArrayList<Employee> findForName(Employee ep){
+			ArrayList<Employee> list = new ArrayList<>();
+			Connection con = DBUntil.getConnection();
+			String find = "SELECT * FROM Employee WHERE Name = ?";
+			try {
+				PreparedStatement pstm = con.prepareStatement(find);
+				pstm.setString(1, ep.getName());
+				ResultSet rs = pstm.executeQuery();
+				
+				while (rs.next()) {
+					long id = rs.getLong("id");
+					String name = rs.getString("name");
+					int age = rs.getInt("age");
+					String address = rs.getString("address");
+					double salary = rs.getDouble("salary");
+					int sumTime = rs.getInt("SumTimeWork");
+					Employee e = new Employee(id, name, age, address, salary, sumTime);
+
+					list.add(e);
+
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return list;
+		}
+		public static int delete(Employee employee) {
+			int result = 0;
+			Connection conn = DBUntil.getConnection();
+			String delete = "DELETE FROM Employee WHERE ID=?";
+			try {
+				PreparedStatement pstm = conn.prepareStatement(delete);
+				pstm.setLong(1, employee.getId());
+				result = pstm.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		public static int update(Employee employee) {
+			int result = 0; 
+			Connection conn = DBUntil.getConnection();
+			String up = "UPDATE Employee SET Name = ?, Age = ?, Address = ?, Salary = ?, SumTimeWork = ? WHERE ID =?";
+			try {
+				PreparedStatement pstm = conn.prepareStatement(up);
+				pstm.setLong(6, employee.getId());
+				pstm.setString(1, employee.getName());
+				pstm.setInt(2, employee.getAge());
+				pstm.setString(3, employee.getAddress());
+				pstm.setDouble(4, employee.getSalary());
+				pstm.setInt(5, employee.getSumTime());
+
+				result = pstm.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return result;
+		}
+	}
+
+
+

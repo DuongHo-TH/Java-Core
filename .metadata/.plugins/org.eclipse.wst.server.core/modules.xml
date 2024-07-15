@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.j2ee.server:demospringmvc" serverId="Apache Tomcat v8.5 fullstack at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:WEB-APP" serverId="Apache Tomcat v8.5 fullstack at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:Spring-MVC" serverId="Apache Tomcat v8.5 fullstack at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:General_Assiment_ATJB_opt2" serverId="Apache Tomcat v8.5 fullstack at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:test" serverId="Tomcat v8.5 Server at localhost"/>
+</modules>

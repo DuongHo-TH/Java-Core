@@ -1,0 +1,29 @@
+package Bai14;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class EmployeeDAO {
+	public static int insert(Employee e, Connection conn) {
+		int dem = 0;
+		String sql = "INSERT INTO employee Values(?,?,?,?,?,?)";
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, e.getID());
+			ps.setString(2, e.getName());
+			ps.setInt(3, e.getAge());
+			ps.setString(4, e.getAddress());
+			ps.setDouble(5, e.getSlary());
+			ps.setInt(6, e.getSumtimeWork());
+
+			ps.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return dem;
+
+	}
+}

@@ -1,0 +1,4 @@
+127.0.0.1 - - [09/Jun/2024:12:54:56 +0700] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [09/Jun/2024:12:54:56 +0700] "GET /General_Assiment_ATJB_opt2/ HTTP/1.1" 200 1029
+0:0:0:0:0:0:0:1 - - [09/Jun/2024:12:54:56 +0700] "GET /favicon.ico HTTP/1.1" 404 685
+0:0:0:0:0:0:0:1 - - [09/Jun/2024:12:55:10 +0700] "GET /General_Assiment_ATJB_opt2/themkhach HTTP/1.1" 200 2091
